@@ -41,7 +41,7 @@ RUN mv varconf.sql /mysql/schema.sql
 COPY /mysql/privileges.sql /mysql/privileges.sql
 
 # 对外开放端口
-EXPOSE 80,3306
+EXPOSE 80 3306
 
 # 设置容器启动时执行的命令
 CMD ["sh", "/mysql/setup.sh && ./varconf-server"]
