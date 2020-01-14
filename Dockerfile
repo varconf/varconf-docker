@@ -37,7 +37,7 @@ COPY --from=build /varconf-server/varconf-ui/ .
 
 # 将所需文件放到容器中
 COPY /mysql/setup.sh /mysql/setup.sh
-COPY varconf.sql /mysql/schema.sql
+RUN mv varconf.sql /mysql/schema.sql
 COPY /mysql/privileges.sql /mysql/privileges.sql
 
 # 对外开放端口
