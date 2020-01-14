@@ -11,6 +11,7 @@ RUN wget --no-check-certificate https://github.com/varconf/varconf-server/archiv
 RUN tar -zxvf v0.0.1.tar.gz
 RUN cp -r ./varconf-server-0.0.1/* ./
 RUN rm -rf ./varconf-server-0.0.1
+RUN rm -rf v0.0.1.tar.gz*
 RUN cd ../
 
 # 下载前端代码并解压
@@ -20,6 +21,7 @@ RUN wget --no-check-certificate https://github.com/varconf/varconf-ui/archive/v0
 RUN tar -zxvf v0.0.1.tar.gz
 RUN cp -r ./varconf-ui-0.0.1/* ./
 RUN rm -rf ./varconf-ui-0.0.1
+RUN rm -rf v0.0.1.tar.gz*
 RUN cd ../
 
 # 编译静态应用
