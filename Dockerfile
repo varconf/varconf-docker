@@ -32,16 +32,17 @@ WORKDIR /varconf/
 
 # 从buil阶段拷贝二进制文件
 COPY --from=build /varconf-server/varconf-server .
+COPY --from=build /varconf-server/config.json .
 COPY --from=build /varconf-server/varconf.sql .
-COPY --from=build /varconf-server/varconf-ui/ .
+COPY --from=build /varconf-server/varconf-ui/ ./varconf-ui/
 
 # 将所需文件放到容器中
-COPY /mysql/setup.sh /mysql/setup.sh
-RUN mv varconf.sql /mysql/schema.sql
+COPY /start.sh /varconf/start.sh
 COPY /mysql/privileges.sql /mysql/privileges.sql
+RUN mv ./varconf.sql /mysql/schema.sql
 
 # 对外开放端口
-EXPOSE 80 3306
+EXPOSE 8088 3306
 
 # 设置容器启动时执行的命令
-CMD ["sh", "/mysql/setup.sh && ./varconf-server"]
+CMD ["/bin/bash", "start.sh"]
